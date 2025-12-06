@@ -16,7 +16,7 @@ class Person:
 def create_person_list(people: list) -> list:
     Person.people = {}
 
-    [Person(person["name"], person["age"]) for person in people]
+    person_list = [Person(person.get("name"), person.get("age")) for person in people]
 
     for person in people:
         current_person = Person.people.get(person.get("name"))
@@ -29,4 +29,4 @@ def create_person_list(people: list) -> list:
                     Person.people.get(person.get(relation))
                 )
 
-    return [person for person in Person.people.values()]
+    return person_list
