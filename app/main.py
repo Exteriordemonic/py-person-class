@@ -28,8 +28,3 @@ def create_person_list(people: list) -> list:
                 )
 
     return [person for person in Person.people.values()]
-
-
-def assign_partner(current: Person, person: dict, key: str) -> None:
-    if person.get(key):
-        current[key] = Person.people.get(person.get(key))
