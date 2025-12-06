@@ -1,8 +1,35 @@
 class Person:
-    # write your code here
-    pass
+
+    people = {}
+
+    def __init__(
+        self,
+        name: str,
+        age: int,
+    ) -> None:
+        self.name = name
+        self.age = age
+
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    [Person(person["name"], person["age"]) for person in people]
+
+    for person in people:
+        current_person = Person.people.get(person.get("name"))
+
+        for relation in ("wife", "husband"):
+            if person.get(relation):
+                setattr(
+                    current_person,
+                    relation,
+                    Person.people.get(person[relation])
+                )
+
+    return [person for person in Person.people.values()]
+
+
+def assign_partner(current: Person, person: dict, key: str) -> None:
+    if person.get(key):
+        current[key] = Person.people.get(person.get(key))
