@@ -26,7 +26,7 @@ def create_person_list(people: list) -> list:
                 setattr(
                     current_person,
                     relation,
-                    Person.people.get(person[relation])
+                    Person.people.get(person.get(relation))
                 )
 
     return [person for person in Person.people.values()]
